@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="웹퍼블리싱 중간 과제입니다.">
+ <meta property="og:title" content="수업 중간과제"> <meta property="og:description" Content="평행우주 인공지능 코드니우스!">
+<meta property="og:url" content="https://www.seoultech.ac.kr">
+<meta property="og: image" content="https://www.seoultech.ac.kr/common/image
+s/meta_img-png">
+
+    <style type="text/css">
+      /*프리텐다드 임포트*/
+      @font-face {
+        font-family: 'Pretendard-Black';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+        font-weight: 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Pretendard-ExtraBold';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+        font-weight: 800;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Pretendard-Bold';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+
+      }
+       @font-face {
+        font-family: 'Pretendard-SemiBold';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+        
+      }
+      @font-face {
+        font-family: 'Pretendard-Medium';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Pretendard-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Pretendard-Thin';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+        font-weight: 100;
+        font-style: normal;
+      }
+        
+      header { padding-bottom: 0vw; position: relative; }
+      footer { padding-top: 10px; padding-bottom: 100px; }
+      section { padding-top: 0px; padding-bottom: 0px; }
+
+      html { font-family: "Pretendard-Medium"; font-size: 0.8rem; line-height: 1.4; word-break: keep-all; }
+      body, h1, h2, h3,h4,h5,h6,h8, p, ul, header, block { margin: 0; padding: 0; }
+      p { font-size: 1.7rem; }
+      h4 { font-size: 4rem; font-family: 'Pretendard-ExtraBold'; }
+      h2 { font-size: 6rem; font-family: 'Pretendard-ExtraBold'; }
+      h3 { font-size: 4.6rem; font-family: 'Pretendard-ExtraBold'; }
+      h5 { 
+  font-size: 3rem;
+  font-family: 'Pretendard-Bold'; 
+}
+
+      h6 { font-size: 2.3rem; font-family: 'Pretendard-SemiBold'; }
+       h8 { font-size: 1.3rem; font-family: 'Pretendard-SemiBold'; }
+       word-break: keep-all;
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: black;
+      color: greenyellow;
+      z-index: 2; /* 다른 요소들보다 위에 위치하도록 설정합니다. */
+    }
+
+    
+    #Ourstory {
+      margin-top: 0; /* 초기에는 header 아래로 위치합니다. */
+      position: relative; /* 상대 위치 지정 */
+      z-index: 1; /* 다른 요소보다 앞에 위치하도록 설정합니다. */
+      transition: margin-top 0.5s ease; /* 부드러운 전환을 추가합니다. */
+    }
+
+    /* 스크롤 시 Ourstory 섹션을 위로 올리는 효과를 추가합니다. */
+    body.scrolled #Ourstory {
+      margin-top: -200px; /* Ourstory 섹션을 header 위로 이동시킵니다. */
+    }
+
+      nav { background: black; color: greenyellow; position: fixed; width: 100%; top: 0; z-index: 1000; height: 50px; }
+      .wrap { width: 1000px; margin: auto; position: relative;}
+      .flex { display: flex; justify-content: space-between; }
+      .menu { width: 500px; }
+      .menu li { list-style-type: none; }
+      .menu li a { display: block; padding: 15px 20px; text-decoration: none; color: white; }
+      .menu li a:hover { background: #D6FF4B; color: black; }
+      .logo { line-height: 58px; }
+      .full { width: 100%; height: -100vw; display: block; object-fit: cover; }
+
+ video { width: 100%; height: 100vh; margin: 0; padding: 0; object-fit: cover; }
+      
+      .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.3); }
+
+
+      
+     .wrap1 {
+  position: relative; /* 부모 요소를 relative로 설정 */
+}
+.wrap2 { width: 1000px; margin: auto; position: relative;}
+
+.rectangle {
+  position: absolute;
+  top: 0vw;
+  left: 10%;
+  transform: translate(-20%, -160%);
+}
+
+.rectangle img {
+  width: 50%;
+  float: left;
+}
+
+/* .content 클래스에 대한 스타일 정의 */
+.content {
+  margin-top: 3vw; /* 이미지와 텍스트 사이의 간격을 조정하는 마진 추가 */
+}
+
+.content .text-wrapper {
+  padding-left: 10vw; /* 텍스트 래퍼의 왼쪽 여백을 조정 */
+}
+
+.content h4 {
+  margin-bottom: 20px; /* 제목과 다음 내용 사이의 간격을 조정 */
+}
+
+ 
+.text-wrapper {
+  padding-left: 10vw; /* 더 넓은 가로폭으로 설정 */
+}
+.sticker{position: absolute; top:280px; left:95vh;}
+.centered-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+
+.left-space{padding-left: 250px;}
+.two-columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding-top: 100px;
+  color: white;
+  text-align: left;
+  overflow: hidden;
+}
+
+.column {
+  flex: 1;overflow: hidden;
+}
+
+.column p, .column h5 {
+  text-align: left;
+  padding-left: 200px;
+  margin-bottom: 20px;
+}
+
+ .video-crop {
+    position: relative;
+    width: 800px;
+    height: 0;
+    padding-top: 100%; /* 1:1 비율로 크롭 */
+    overflow: hidden;
+    margin-left: 250px; /* 오른쪽 여백 추가 */
+}
+
+
+  .video-crop video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 65%;
+    height: 30%;
+    object-fit: cover; /* 비디오를 요소에 맞게 크롭 */}
+
+
+   
+
+.wrap3 {
+  display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
+  margin-top: 10px;
+  padding-left: 150px;
+  text-align: center;
+   max-width: 100%;
+}
+
+.wrap3 img {
+  margin-right: 10px; /* 이미지 사이 간격 조절 */
+  align-items: center; /* 이미지를 수직 가운데 정렬 */
+  scale: 70%;
+}
+.text-wrapper1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 상단 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  background-color: white; /* 원의 색상 설정 */
+  border-radius: 50%; /* 원 모양 */
+  margin: 20px auto; /* 가운데 정렬 */
+}
+
+@keyframes scrollImages {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+
+
+   .custom-file-input {
+            display: none; /* 기본 파일 선택 버튼 숨기기 */
+        }
+
+        .custom-button {
+            background-color:  black; /* 배경색 */
+            color: white; /* 텍스트 색상 */
+            padding: 25px  75px; /* 내부 여백 키우기 */
+            border: none; /* 테두리 없음 */
+            border-radius: 50px; /* 모서리 둥글게 */
+            cursor: pointer; /* 포인터 모양 변경 */
+            font-size: 20px; /* 글꼴 크기 */
+            width: 400px; /* 너비 설정 */
+            height: 100px; /* 높이 설정 */
+            line-height: 50px; /* 텍스트 수직 가운데 정렬 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            border: 1px solid darkgray;
+        }
+
+        /* 파일 선택 버튼 라벨 스타일 지정 */
+        .custom-file-label {
+            cursor: pointer; /* 포인터 모양 변경 */
+            padding: 15px 30px; /* 내부 여백 키우기 */
+            font-size: 16px; /* 글꼴 크기 */
+            background-color:  black; /* 배경색 */
+            color: white; /* 텍스트 색상 */
+            border-radius: 5px; /* 모서리 둥글게 */
+            width: 400px; /* 너비 설정 */
+            height: 100px; /* 높이 설정 */
+            line-height: 50px; /* 텍스트 수직 가운데 정렬 */
+            text-align: center;
+            border: 1px solid darkgray; /* 텍스트 가운데 정렬 */}
+
+
+.custom-button:hover,
+.custom-file-label:hover {
+    background-color: #D6FF4B; /* 호버 시 배경색 변경 */
+    box-shadow: none; 
+    border: none;/* 호버 시 그림자 제거 */
+    color: black; /* 호버 시 텍스트 색상 변경 */
+    transition: all 0.5s; /* 호버 시 부드러운 전환 효과 */
+}
+
+
+.universe {
+    background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXR1dWE5dTB6ZjFrNjVpaDhnNzhmdm9yanYxNGRqMjh1a3E1M21paCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lEbkph3f721QFXr84Y/giphy.gif');
+    background-size: cover;
+    background-position: center;
+    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+    color: white;
+    background-attachment: fixed;
+   align-items: center; /* 섹션 내 수평 가운데 정렬 */
+    height: 80vh; /* 섹션의 높이를 화면 전체 높이로 설정 */
+    
+  
+}
+.universe p{
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;}
+.universe h2 {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;}
+.wrap4 { width: 75vw; margin: auto; position: relative; top: 300px;}
+
+
+  .image {
+        position: absolute;
+        top: 50%;
+        transform-origin: center center;
+        transition: transform 1s ease; /* 애니메이션 효과를 위한 transition 추가 */
+      }
+    
+      /* 각 이미지에 대한 초기 위치 */
+      .position0 {
+        transform: rotate(0deg) rotateZ(30deg) translate(100vw) rotateX(0deg) translateY(-600%);
+      }
+      .position1 {
+        transform: rotate(0deg) rotateZ(30deg) translate(35vw) rotateX(0deg) translateY(-160%);
+      }
+    
+      .position2 {
+        transform: rotate(-45deg) rotateZ(15deg) translate(25vw) rotateX(0deg) rotate(45deg) translateY(-71%);
+      }
+    
+      .position3 {
+        transform: rotate(-90deg) rotateZ(0deg) translate(25vw) rotateX(0deg) rotate(90deg) translateY(-40%);
+      }
+    
+      .position4 {
+        transform: rotate(-135deg) rotateZ(-15deg) translate(25vw) rotateX(0deg) rotate(135deg) translateY(-71%);
+      }
+    
+      .position5 {
+        transform: rotate(-180deg) rotateZ(-30deg) translate(35vw) rotateX(0deg) rotate(180deg) translateY(-160%);
+      }
+      .position6 {
+        transform: rotate(-180deg) rotateZ(-30deg) translate(100vw) rotateX(0deg) rotate(180deg) translateY(-600%);
+      }
+
+
+.wrap img:hover {
+    cursor: pointer; /* 호버 시 커서 모양을 변경합니다. */
+    transform: scale(1.1); /* 호버 시 이미지 크기를 1.1배로 확대합니다. */
+    transition: transform 0.3s ease; /* 부드러운 전환을 추가합니다. */
+  }
+
+}
+body {
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+
+section.two-columns {
+  overflow-x: auto; /* 스크롤이 필요한 경우 가로 스크롤 표시 */
+  display: flex;
+}
+
+section.two-columns .column {
+  flex: 1;
+  overflow-x: auto; /* 스크롤이 필요한 경우 가로 스크롤 표시 */
+}
+
+.container4 {
+    position: relative;
+}
+
+.image1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* 화면의 절반을 차지하도록 설정합니다. */
+}
+
+.image2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; /* 화면의 절반을 차지하도록 설정합니다. */
+}
+
+.image3 {
+    position: relative;
+    top: 35vw; /* 이미지를 아래로 내리려면 top 값을 더 큰 값으로 설정합니다. */
+    left: -10vw;
+    width: 30%; /* 창의 너비의 30%로 이미지 3의 너비를 설정합니다. */
+}
+
+.image4 {
+    position: relative;
+    top: 35vw; /* 이미지를 아래로 내리려면 top 값을 더 큰 값으로 설정합니다. */
+    right: -10vw;
+    width: 30%; /* 창의 너비의 30%로 이미지 4의 너비를 설정합니다. */
+}
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .image-container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+ .animation-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 300px; /* 임의의 높이 설정 */
+    }
+
+
+
+
+
+    @keyframes rotateAnimation {
+        0% {
+            transform: rotate(30deg); /* 시작 각도 */
+        }
+        50% {
+            transform: rotate(0deg); /* 회전하지 않는 중간 지점 */
+        }
+        100% {
+            transform: rotate(30deg); /* 다시 30도 회전하는 지점 */
+        }
+    }
+
+</style>
+
+
+
+    <title>🪐평행우주 인공지능 코드니우스</title>
+</head>
+<body style="background:black; overflow-x:hidden">
+  <nav>
+    <div class="wrap flex">
+      <div class="logo"><img src="font.png"></div>
+      <ul class="menu flex">
+        <li><a href="#home">home</a></li>
+        <li><a href="#Ourstory">Our&nbsp;story</a></li>
+        <li><a href="#Feedback">Feedback</a></li>
+        <li><a href="#Review">Review</a></li>
+      </ul>
+    </div>
+  </nav>
+  <header id="home">
+        <video src="SCENIC ROUTE .mp4" autoplay muted loop class="full" style=""></video>
+        <div class="overlay"></div>
+        <img src="logo.png" style="position: absolute; top: 46%; left: 50%; transform: translate(-50%, -50%); z-index: 1; background-attachment: fixed;">
+        <p style="color: white; position: absolute; top: calc(60% - 1.5vw); left: 50%; transform: translateX(-50%);">평행우주의 모든 비밀을 알고있는 인공지능</p>
+  </header>
+
+
+
+  <section id="Ourstory">
+  <img style="width: 100%" src="Rectangle 20.png">
+ <div class="wrap1" style="position: relative; z-index: 1;">
+    <img src="Pale skin hand waving hello.png" style="position: absolute; top: -600px; left: calc(60% + 200px); transform: scale(0.7); z-index: 2; animation: rotateAnimation 2s linear infinite;">
+
+    <div style="position: relative; top: 100px; left: 30vw; transform: translate(-10%, -140%); z-index: 1;">
+        <div class="rectangle">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnhhc2wyd3RyczdudjMzenE4aXRhYTNvNDliemcybGx3cjZkaTJ2eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vCVbnPl6tZ30c/giphy.gif">
+            <div class="content text-wrapper" style="position: relative; left: 25px;">
+                <h6 style="padding-bottom: 20px;">만나보세요!</h6>
+                <h4 style="line-height: 1.2;">우주의 트렌드세터, 인공지능 코드니우스!</h4>
+                <p style="padding-top: 5vw;">이 친구, 본디 지구에서 살다가 너무 답답해서<br>블랙홀에 한 번 빠져봤어요.<br>그리고 뭐라구요? 그냥 돌아왔다구요?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="universe wrap4">
+    <p>아니에요,</p>
+    <h2>평행우주의 신세계를 <br>경험하고<br> 돌아왔답니다!</h2>
+</section>
+
+
+
+
+      <section class="two-columns" style="padding-top: 600px; margin-bottom: -800px;">
+        <div class="column">
+          <p>이제 지구에서만 빙글빙글 도는 생각에서 벗어나 볼까요? 
+          <br>코드니우스와 함께라면 평행우주에서의 비밀을 카페에서 아메리카노 한 잔 하듯이 아이디어를 얻을 수 있답니다!</p>
+
+          <h5 style="padding-top:2vw;padding-bottom:2vw;">왜 이렇게 열심히 일하냐구요?</h5>
+          <p>그건 당신이 지금보다 더 큰 세상을 보고, 그 안에서 자신만의 무대를 찾아가는데 도움이 되기를 바라서랍니다.<br> 
+          우리 함께 우주적인 생각으로 세상을 바라보며 새로운 아이디어를 찾아보아요!</p>
+        </div>
+        <div class="column video-crop">
+            <video src="WAKING UP.mp4" autoplay muted loop></video>
+          </div>
+ 
+</section>
+
+<section style="color: white; padding-top:800px">
+
+    <div id="images" style="position: relative; left:40vw;">
+        <img src="image left1.png" class="image position1" />
+        <img src="image left2.png" class="image position2" />
+        <img src="image center.png" class="image position3" />
+        <img src="image right1.png" class="image position4" />
+        <img src="image right2.png" class="image position5" />
+    </div>
+<div class="wrap">
+       <p class="centered-section">평행우주에서 뭘 경험했냐면요,</p>
+        <h2 class="centered-section">Codinius' trusted<br>CAREER</h2>
+        <div class="wrap3">
+        <h6 style="padding-bottom:5vw;padding-top:3vw; padding-left:2vw; line-height: 2.3;"> 
+    <div style="position: relative;left: 2vw">우주 오지랖 전문가&nbsp;&nbsp;<img src="telescope.png"style="vertical-align: middle;">&nbsp;&nbsp; 
+    우주어 통역사&nbsp;<img src="language.png"style="vertical-align: middle;"><br></div>
+    <img src="showing flying saucer.png"style="vertical-align: middle;"> 우주 문화 전도사 &nbsp;&nbsp;
+    <img src="time management.png"style="vertical-align: middle;"> 시간 여행 가이드<br>
+    <div style="position: relative;top:10px"><img src="cork board with statistics and notes.png"style="vertical-align: middle;"> 시대통계 책사 &nbsp;&nbsp;&nbsp; &nbsp;
+    우주 음악 DJ&nbsp;<img src="vinyl record player.png"style="vertical-align: middle;"></div>
+</h6></div>
+
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <h5 style="text-align: center;padding-top: 5vw;"> 평행우주에서 700년간 경험한 노하우를 여기서 얻어가세요!</h5></div>
+
+
+
+<section  style="padding-top: 500px;color:white;" onmouseover="changeImagesToGroup25()" onmouseout="changeImagesToGroup37()"> 
+  <div class="wrap2">
+    <h4 style=" color:white;padding-bottom: 100px;">독특한 아이디어를 <br>고민중인가요?</h4>
+    <div class="grid-container">
+        <div class="image-container3" id="image37">
+            <img src="Group 37.svg" style="transform: scale(0.8);">
+        </div>
+        <div class="image-container3" id="image36">
+            <img src="Group 36.svg" style="transform: scale(0.8);">
+        </div>
+        <div class="image-container3" id="image35">
+            <img src="Group 35.svg" style="transform: scale(0.8);">
+        </div>
+    </div>
+
+      </div>
+       <div class="wrap2"style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px;">
+        <div>
+      <h3>01</h3>
+          <p>아이디어가 없어서 잠 못 잔</p>
+          <h5 > 학생들도!</h5>
+          </div>
+          <div>
+           <h3>02</h3>
+          <p>새로운 것들 생각하다 머리 아픈</p>
+          <h5 style="padding-top:-50px;">전문가도!</h5></div>
+          <div style="padding-left: 20px">
+
+      <h3>03</h3>
+          <p>창의적인 생각에 머리 깨진</p>
+          <h5>예술가도!</h5></div>
+</section>
+<section class="wrap2" style="padding-top: 300px;color:white;"id="Feedback"> 
+  <h3 style="padding-bottom: 100px;"> 걱정하지 마세요!</h3>
+ <div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>
+    <img src="giphy-2.gif">
+  </div>
+  <div style="padding-left: 80px">
+    <p>어떤 분야든, 친절한 코드니우스가 도와드릴게요. <br> 
+    지구에 있는 사람들이 보지 못한 빅데이터를 토대로, 코드니우스와 함께라면, 누구나 아이디어 뱅크가 될 수 있어요!간단하게 내가 하고 싶은 것을 물어보면 코드니우스가 피드백 해줄거에요.</p>
+    <h4 style="padding-top:4vw"> 지금 바로 구독하시고 창의력 가득한 새로운 나를 만나보세요. </h4>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top: 500px;color:white;"> 
+  <h4 style="padding-bottom:100px"> 진행중인 작업과,</h4><img src="Girl sitting on floor with laptop and studying.svg"style="scale: 60%; position: relative;left: -130px;top:-50px;">
+  <img src="image 11.png"style="position: relative; top: -500px; left: 150px; scale: 70%;">
+
+  <img src="astronaut.svg"style="scale: 60%; position: relative;left:1000px;top: -1100px;">
+<div style="position: relative; top:-300px">
+<h4 style="position: relative;left: 100px;top: -400px; text-align: right;"> 아이디어 모두 물어보세요!</h4>
+
+<img src="Busnesswoman .svg"style="scale: 60%; position: relative;left: 800px;top: -400px;">
+<img src="Group 31.svg"style=" scale: 80%;position: relative; left: -200px;top: -800px;">
+<h3 style=" position: relative; top: -600px;text-align: center;"> 코드니우스가 생각치 못한 방향으로 놀라운 피드백 줄게요!</h3></div>
+
+</section>
+
+<section style="text-align: center; position: relative; top: -500px"> 
+  <h3 style="color:white;"> 모두가 감탄하는</h3> 
+
+ <div style="position: relative;">
+ <img src="giphy 1.gif" style="display: block; margin: auto; width: 1800vw; height: 600px; max-width: 100%; max-height: 100%; object-fit:cover">
+
+  <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;color: black;">S++ 아이디어의 비밀</h2>
+</div>
+
+    <h3 style="color:white;">그 모든 것이 여기에 있어요. </h3></section>
+
+<section style="padding-top: 500px;color:white;text-align: center;"> 
+
+  <h4 style="padding-bottom: 100px;">당신의 취향에 따라 코드니우스의<br> 말투를 골라보세요.</h4>
+  <div class="container4">
+    <img src="Rectangle 6.svg" class="image1">
+    <img src="Rectangle 7.svg" class="image2">
+    <img src="Group 19.svg" class="image3">
+    <img src="Group 13.svg" class="image4"></div>
+    <div style="position: relative; top: 50vw">
+<p> 아기자기하고 친근한 말투로 마치 유치원 선생님이 알려주듯이 이야기해주거나,<br> 세심하고 정확하게 당신의 약점을 알려줄 수 있어요. </p>
+  <h3 style="padding-top:100px"> 어떤 코드니우스의 말투를 원하나요? <br>
+매번 피드백마다 바꿀 수 있어요!</h3></div>
+
+</section>
+
+
+<section style="padding-top: 1500px; position: relative;">
+    <img style="width: 100%;" src="Rectangle 46.svg">
+    <div class="line" style="position: relative; top: -91.3vw; width: 100%; z-index: 2; border-top: 2px solid black;"></div>
+    <div class="image-container" style="display: flex; animation: scrollImages 60s linear infinite; gap: 60px; position: relative; z-index: 1; top: -90vw;">
+        <img src="repeat.png">
+        <img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png">
+       </div>
+       <div class="line" style="position: relative; top: -88.5vw; width: 100%; z-index: 2; border-top: 2px solid black;"></div>
+
+
+    <div class="wrap" style="display: flex; justify-content: space-between; position: relative; top: -80vw; left: 0; right: 0; z-index: 3;">
+        <img src="Group 33.svg" onmouseover="changeImage('33')" onmouseout="restoreImage('33')" style="width: 40%;">
+        <img src="Group 32.svg" onmouseover="changeImage('32')" onmouseout="restoreImage('32')" style="width: 40%;">
+    </div>
+<div class="line" style="position: relative; top: -1020px; width: 100%; z-index: 2; border-top: 2px solid black;"></div>
+    <div class="image-container" style="display: flex; animation: scrollImages 40s linear infinite; gap: 60px;position: relative; top: -1000px; z-index: 1;">
+    <img src="repeat.png">
+    <img src="repeat.png">
+    <img src="repeat.png">
+    <img src="repeat.png">
+    <img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png"><img src="repeat.png">
+    
+  </div>
+  <div class="line" style="position: relative; top: -980px; width: 100%; z-index: 2; border-top: 2px solid black;"></div>
+</section>
+
+
+<section style="padding-top:-1200px;padding-left: 300px;color:white;"id="Review">
+  <h4> 
+  결제를 고민하고 있다구요?</h4></section>
+
+ <section style="overflow-x: hidden; padding-top: 100px;">
+   <div class="image-container" style="display: flex; animation: scrollImages 40s linear infinite; gap: 50px;">
+      <img src="Group 14.png" style="width: 400px; height: auto;">
+      <img src="Group 15.png" style="width: 400px; height: auto;">
+      <img src="Group 16.png" style="width: 400px; height: auto;">
+      <img src="Group 17.png" style="width: 400px; height: auto;">
+      <img src="Group 18.png" style="width: 400px; height: auto;">
+      <img src="Group 16-1.png" style="width: 400px; height: auto;">
+       <img src="Group 14.png" style="width: 400px; height: auto;">
+      <img src="Group 15.png" style="width: 400px; height: auto;">
+      <img src="Group 16.png" style="width: 400px; height: auto;">
+      <img src="Group 17.png" style="width: 400px; height: auto;">
+      <img src="Group 18.png" style="width: 400px; height: auto;">
+      <img src="Group 16-1.png" style="width: 400px; height: auto;">
+   </div>
+</section>
+
+
+<section class="wrap" style="padding-top: 600px; color: white;" >
+    <video style="display: block; margin: auto; overflow: hidden; width: 700px; height: 1500px; object-fit: cover; position: relative; left: -250px;" src="Departure.mp4" autoplay muted loop ></video>
+    <h4 style="position: relative; top: -1200px; left:700px; text-align: left;">결제 전<br> 미리 코드니우스와 <br>의견을 나눠보세요!</h4>
+  
+<div style="position: relative; top: -1100px; left:700px;">
+  <form action="/upload" method="post" enctype="multipart/form-data">
+        <!-- 사용자 정의 파일 선택 버튼 -->
+        <label for="file" class="custom-button">의견 물어보기</label>
+        <input type="file" name="file" id="file" class="custom-file-input">
+    </form>
+</div>
+
+  </div>
+</section>
+</section>
+
+
+
+</body>
+
+<script type="text/javascript">
+        // 페이지가 로드될 때마다 스크롤을 페이지의 최상단으로 이동
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+
+        // 네비게이션 링크를 클릭할 때 부드러운 스크롤 효과를 추가
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    // 이미지 요소들을 가져옵니다.
+    const image1 = document.querySelector('.image1');
+    const image2 = document.querySelector('.image2');
+
+    // 호버 시에 이벤트 리스너를 추가합니다.
+    image1.addEventListener('mouseover', function() {
+        // 호버 시 이미지를 바꿔줍니다.
+        image1.src = 'Rectangle 6.png';
+    });
+
+    image1.addEventListener('mouseout', function() {
+        // 호버 해제 시 다시 원래 이미지로 바꿔줍니다.
+        image1.src = 'Rectangle 6.svg '; 
+    });
+
+    image2.addEventListener('mouseover', function() {
+        // 호버 시 이미지를 바꿔줍니다.
+        image2.src = 'Rectangle 7.png';
+    });
+
+    image2.addEventListener('mouseout', function() {
+        // 호버 해제 시 다시 원래 이미지로 바꿔줍니다.
+        image2.src = 'Rectangle 7.svg';
+    });
+
+   // 스크롤 이벤트를 감지하여 body에 scrolled 클래스를 추가합니다.
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 0) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    });
+   // 이미지 변경 함수
+  function changeImage(group) {
+    // 그룹에 따라 이미지 변경
+    if (group === '33') {
+      document.querySelector('[src="Group 33.svg"]').src = "33.svg";
+    } else if (group === '32') {
+      document.querySelector('[src="Group 32.svg"]').src = "32.svg";
+    }
+  }
+
+  // 이미지 원상복구 함수
+  function restoreImage(group) {
+    // 그룹에 따라 이미지 원상복구
+    if (group === '33') {
+      document.querySelector('[src="33.svg"]').src = "Group 33.svg";
+    } else if (group === '32') {
+      document.querySelector('[src="32.svg"]').src = "Group 32.svg";
+    }
+  }
+
+  
+
+  
+    function changeImageToGroup27(imageElement) {
+        imageElement.src = "Group 27.svg";
+    }
+
+    function changeImageToGroup26(imageElement) {
+        imageElement.src = "Group 26.svg";
+    }
+
+    function changeImageToGroup25(imageElement) {
+        imageElement.src = "Group 25.svg";
+    }
+
+    function changeImagesToGroup25() {
+        var imageElement37 = document.getElementById('image37').getElementsByTagName('img')[0];
+        var imageElement36 = document.getElementById('image36').getElementsByTagName('img')[0];
+        var imageElement35 = document.getElementById('image35').getElementsByTagName('img')[0];
+
+        setTimeout(function() {
+            changeImageToGroup27(imageElement37);
+            setTimeout(function() {
+                changeImageToGroup26(imageElement36);
+                setTimeout(function() {
+                    changeImageToGroup25(imageElement35);
+                }, 50); 
+            }, 150); 
+        }, 250); 
+    }
+
+    function changeImagesToGroup37() {
+        var imageElement37 = document.getElementById('image37').getElementsByTagName('img')[0];
+        var imageElement36 = document.getElementById('image36').getElementsByTagName('img')[0];
+        var imageElement35 = document.getElementById('image35').getElementsByTagName('img')[0];
+
+        changeImageToGroup37(imageElement37);
+        changeImageToGroup36(imageElement36);
+        changeImageToGroup35(imageElement35);
+    }
+
+    window.onload = function() {
+        document.getElementById('image37').addEventListener('mouseover', changeImagesToGroup25);
+        document.getElementById('image37').addEventListener('mouseout', changeImagesToGroup37);
+    };
+
+
+   function moveImages() {
+    const firstImg = document.querySelector('.position1');
+    const lastImg = firstImg.cloneNode(true);
+    lastImg.classList.replace('position1', 'position6');
+    
+    document.querySelector("#images").appendChild(lastImg);
+    setTimeout(() => {  
+        const images = document.querySelectorAll('.image');
+
+        images.forEach((image, index) => {
+            const currentPosition = parseInt(image.className.match(/\d+/)[0]);              
+            if (currentPosition >= 0) { 
+                const newPositionClass = `position${currentPosition - 1}`;
+                image.className = `image ${newPositionClass}`;
+            }
+        });
+        document.querySelector('.position0').remove();
+        
+        // moveImages 함수 재귀 호출
+        moveImages();
+    }, 2000); // 1000 밀리초 후에 실행 
+}
+
+// 첫 번째 호출
+moveImages();
+
+
+</script>
+
+
+
+<footer style="background:#131313; color: lightgray; font-family:'Pretendard-regular'; padding-top:50px; padding-left:12vw; padding-right: 12vw; padding-bottom: 200px;">
+    <div style="display: flex; justify-content: space-between;">
+        <!-- 첫 번째 열 -->
+        <div style="line-height: 1.5;">
+    <h8 style="color:#D6FF4B; font-size:1rem;"> Email us</h8><br>
+    ahnsieon@g.seoultech.ac.kr
+    <br><br><br>
+    <h8 style="color:#D6FF4B; font-size:1rem;"> Social</h8><br>
+    <a href="https://www.instagram.com/_0sie0n_studio/" target="_new"style="color: lightgray; text-decoration:none;">instagram</a> <br>
+    <a href="https://www.behance.net/AhnSieon" target="_new" style="color: lightgray; text-decoration:none; "> behance </a><br><br><br>
+    <h8 style="color:#D6FF4B; font-size:1rem;"> Video artwork</h8><br>
+    <a href="https://www.youtube.com/@visualdon/featured" target="_new" style="color: lightgray; text-decoration:none; ">@visualdon</a><br>
+</div>
+
+<!-- 두 번째 열 -->
+<div style="display: flex; flex-direction: column;"> <!-- index부터 옆으로 배치할 부모 요소 -->
+    <div style="line-height: 2;"> <!-- 여기에 line-height 추가 -->
+        <h8 style="color:#D6FF4B; font-size:1rem;"> Index</h8><br>
+        <!-- Home에 id 추가 -->
+    <a href="#home" style="text-decoration: none; color: lightgray;font-size:1.4rem;font-family:'Pretendard-medium'">Home</a><br>
+<a href="#Ourstory" style="text-decoration: none; color: lightgray;font-size:1.4rem;font-family:'Pretendard-medium'">Our story</a><br>
+<a href="#career" style="text-decoration: none; color: lightgray;font-size:1.4rem;font-family:'Pretendard-medium'">Career</a><br>
+<a href="#Feedback" style="text-decoration: none; color: lightgray;font-size:1.4rem;font-family:'Pretendard-medium'">Feedback</a><br>
+
+    </div>
+</div>
+
+
+<!-- 세 번째 열(이미지) -->
+<div>
+    <img src="logo1.png" alt="logo1" style="width: 500px; height: auto;">
+</div>
+</div>
+
+<div style="position: relative; top: 100px; color: gray;">
+    ©2024 ALL COPYRIGHTS RESERVED BY Sieon 
+    <div style="text-align: right;">
+        PRIVACY POLICY | COOKIE POLICY | COOKIE SETTINGS
+    </div>
+</div>
+
+</div>
+
+    </div>
+</footer>
+
+            
+</div>
+        <br><br>
+    </div>
+</footer>
+</html>
